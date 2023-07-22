@@ -1,0 +1,26 @@
+<%- include('../includes/header.ejs') %>
+</head>
+<body>
+      <%- include('../includes/navigation.ejs') %>
+
+    <div class="main-wraper">
+      <div class="content-wrapper px-5">
+        <% if (errorMessage) { %>
+          <div class="alert alert-danger " dir="rtl" role="alert">
+            <%= errorMessage %>
+          </div>
+          <%} %>
+        <form action="/newpass" method="POST" >
+            <div class="my-3 mt-5 text-end">
+              <label for="pass" class="form-label"> رمز جدید خود را وارد کنید </label>
+              <input type="text" class="form-control" name="pass">
+            </div>
+            <input type="hidden" name="userId" value="<%=userId%>">
+            <input type="hidden" name="passToken" value="<%=passToken%>">
+            <button type="submit" class="btn btn-secondary float-end"> رمزم را عوض کن  </button>
+          </form>
+      </div>
+    </div>
+
+          <!-- footer -->
+    <%- include('../includes/footer') %>

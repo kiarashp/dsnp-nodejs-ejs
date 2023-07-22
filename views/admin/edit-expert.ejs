@@ -1,0 +1,57 @@
+<%- include('../includes/header.ejs') %>
+</head>
+<body>
+  <%- include('./admin-navigation') %>
+
+<div class="main-wraper">
+  <div class="content-wrapper container-fluid">
+    <% if (errorMessage) { %>
+      <div class="alert alert-danger " dir="rtl" role="alert">
+        <%= errorMessage %>
+      </div>
+      <%} %>
+      <div class="bg-p-90 w-75 p-3 m-auto rounded " >
+              <form action="/admin/edit-expert" method="POST" enctype="multipart/form-data">
+                <div class="row p-3  text-end"> 
+                  <div class="mb-3 col ">
+                    <label for="name" class="form-label text-white"> نام </label>
+                    <input name="name" type="text" value="<%= expert.name %>" class="text-end form-control" id="name">
+                  </div>
+                  <div class="mb-3 col">
+                    <label for="phone" class="form-label text-white"> تلفن </label>
+                    <input name="phone" type="number" value="<%= expert.phone %>" class="text-end form-control" id="phone">
+                  </div>
+                  <div class="mb-3 col">
+                      <label for="mail" class="form-label text-white"> ایمیل </label>
+                      <input name="mail" type="text" value="<%= expert.mail %>" class="text-end form-control" id="mail">
+                  </div>
+                  <div class="mb-3">
+                    <label for="description" class="form-label text-white"> توضیحات </label>
+                    <input name="description" type="text" value="<%= expert.description %>" class="text-end form-control" id="description">
+                  </div>
+                  <div class="mb-3 col ">
+                    <label for="image" class="form-label text-white"> تصویر </label>
+                    <input name="image" type="file" class="form-control" id="image">
+                    <div  class="form-text" dir="rtl">فرمت های قابل قبول: jpeg,jpg,png</div>
+
+                  </div>
+                  <div class="mb-3 col">
+                    <label for="telegramurl" class="form-label text-white"> تلگرام </label>
+                    <input name="telegramurl" type="text" value="<%= expert.telegramurl %>" class="form-control" id="telegramurl">
+                  </div>
+                  <div class="mb-3 col">
+                    <label for="whatsappurl" class="form-label text-white"> واتس آپ </label>
+                    <input name="whatsappurl" type="text" value="<%= expert.whatsappurl %>" class="form-control" id="whatsappurl">
+                  </div>
+                    <input type="hidden" value="<%= expert._id %>" name="expertId">
+
+                  <button type="submit" class="mt-2 btn btn-success"> ارسال ویرایش </button>
+                </div>
+                </form>
+          </div>
+
+      </div> <!-- content-wrapper ended -->
+
+    </div> <!-- main-wrapper ended -->
+
+  <%- include('../includes/footer') %>

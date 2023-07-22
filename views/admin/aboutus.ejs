@@ -1,0 +1,39 @@
+<%- include('../includes/header.ejs') %>
+</head>
+<body>
+<%- include('./admin-navigation') %>
+<div class="main-wraper bg-white ">
+    <div class="container-fluid py-5">
+      <% if (errorMessage) { %>
+        <div class="alert alert-danger " dir="rtl" role="alert">
+          <%= errorMessage %>
+        </div>
+        <%} %>
+      <div class="bg-p-90 w-75 p-3 m-auto rounded  " >
+          <form action="/admin/edit-about" method="POST" dir="rtl">
+            <div class="row p-3  text-end"> 
+              <div class="mb-3 col-12 ">
+                <label for="intro" class="form-label text-white">  مقدمه </label>
+                <textarea  name="intro" class="text-end form-control" id="faradis" rows="5"><% if(about) { %><%= about.intro %><% } else { %> <%= "" %> <% } %> </textarea>
+              </div>
+              <div class="mb-3 col-12 ">
+                <label for="faradis" class="form-label text-white">  توضیحات فرادیس </label>
+                <textarea  name="faradis" class="text-end form-control" id="faradis" rows="5"><% if(about) { %><%= about.faradis %><% } { %> <%= "" %> <% } %></textarea>
+              </div>
+              <div class="mb-3 col-12 ">
+                <label for="coopl" class="form-label text-white">  توضیحات کوپل </label>
+                <textarea  name="coopl" class="text-end form-control" id="coopl" rows="5"><% if(about) { %><%= about.coopl %><% } { %> <%= "" %> <% } %></textarea>
+              </div>
+              <div class="mb-3 col-12 ">
+                <label for="german" class="form-label text-white">  توضیحات ژرمن </label>
+                <textarea  name="german" class="text-end form-control" id="german" rows="5"><% if(about) { %><%= about.german %><% } { %> <%= "" %> <% } %></textarea>
+              </div>
+              <button type="submit" class="mt-2 btn btn-success">  ویرایش </button>
+            </div>
+            </form>
+      </div>
+  </div>
+</div>
+
+  
+<%- include('../includes/footer') %>

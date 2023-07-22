@@ -1,0 +1,81 @@
+<%- include('./includes/header.ejs') %>
+</head>
+<body>
+<%- include('./includes/navigation') %>
+  <div class="main-wraper">
+    <div class="content-wrapper">
+      <div class="row m-0" dir="rtl">
+        <div class="col-md-6 contact-us-top-right">
+          <div><i class="fa-solid fa-location-dot"></i><p>
+              <% if(contact) { %><%= contact.address %> <% }else { %> <%= ' متنی وجود ندارد' %> <% } %>
+              </p>
+          </div>
+          <div><i class="fa-solid fa-phone-flip"></i><p>
+              <% if(contact) { %><%= contact.phone %> <% }else { %> <%= ' متنی وجود ندارد' %> <% } %>
+              </p>
+          </div>
+          <div><i class="fa-solid fa-fax"></i><p dir="rtl">
+              <% if(contact) { %><%= contact.fax %> <% }else { %> <%= ' متنی وجود ندارد' %> <% } %>
+              </p>
+          </div>
+          <div><i class="fa-brands fa-square-whatsapp whatsapp-logo"></i><p dir="rtl">
+              <% if(contact) { %><%= contact.whatsapp %> <% }else { %> <%= ' متنی وجود ندارد' %> <% } %>
+              </p>
+          </div>
+        </div>
+        <div class="col-md-6 p-0">
+          <div class="contact-us-top-left">
+                          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d809.9367125049257!2d51.42083317705308!3d35.70784672201217!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f8e017a7c42640b%3A0x66673d13de2a8b0c!2zMzXCsDQyJzI5LjAiTiA1McKwMjUnMTUuMiJF!5e0!3m2!1sen!2s!4v1673859251704!5m2!1sen!2s" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-5" dir="rtl">
+        <div class="col-sm-6">
+          <div class="contact-us-bottom-right overflow-hidden">
+            <div class="row px-5 py-4">                        
+              <div class="col-sm-4 pt-3">
+                <div class="col-sm-12 col-12 mobile-ord-2 text-center"><h4>پیام به سایت</h4></div>
+                <div class="col-sm-12 col-12 mobile-ord-1"><img src="/assets/svg/slide4-message.svg" class="w-full d-block mx-auto mt-5" alt="">
+                </div>         
+              </div>
+              <div class="col-md-8 p-0">
+                <div class="container-fluid ">
+                  <div class="bg-p-90 w-100 m-auto rounded  " >
+                    <% if (errorMessage) { %>
+                      <div class="alert alert-danger " dir="rtl" role="alert">
+                        <%= errorMessage %>
+                      </div>
+                      <%} %>
+                    <form action="/contactus" method="POST" dir="rtl">
+                      <div class="row p-3 text-end"> 
+                        <div class="mb-1 col-6 ">
+                          <label for="name" class="form-label text-white">  نام </label>
+                           <input  name="name" class="text-end form-control" id="name">
+                        </div>
+                        <div class="mb-1 col-6 ">
+                          <label for="email" class="form-label text-white">  ایمیل </label>
+                          <input  name="email" class="text-end form-control" id="email">
+                        </div>
+                        <div class="mb-1 col-12 ">
+                          <label for="description" class="form-label text-white">  توضیحات </label>
+                          <textarea  name="description" class="text-end form-control" id="description"></textarea>
+                          <button type="submit" class="btn submit-button w-100 mt-3">  ارسال پیام </button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 d-flex align-items-center ">
+          <div class="contact-us-bottom-left">
+            <div class=""><span><i class="fa-solid fa-angle-double-right"></i></span><p>هر سوالی دارید از ما بپرسید</p></div>
+          </div>
+        </div>
+      </div>
+    </div><!--main wrapper ends here-->
+  </div><!--main wrapper ends here-->
+    <!-- footer -->
+    <%- include('./includes/footer') %>

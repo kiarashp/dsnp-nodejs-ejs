@@ -1,0 +1,54 @@
+<%- include('../includes/header.ejs') %>
+</head>
+<body>
+    <%- include('./admin-navigation') %>
+
+      <!-- main content  -->
+<div class="main-wraper">
+        <div class="content-wrapper">
+            <% if (experts.length>0){ %>
+                <% for (let expert of experts) { %>
+            <div class="sales-wrapper mt-5">
+                <div class="row m-0">
+                    <div class="col-md-4 col-3">
+                        <div class="sales-img"><img src="/<%= expert.imageurl  %> " alt="<%= expert.name  %>"></div>
+                    </div>
+                    <div class="col-md-7 col-7">
+                        <p><%= expert.name %> </p>
+                        <div><i class="fa-solid fa-phone-flip ms-2"></i><p class="d-inline-block"><%= expert.phone  %></p></div>
+                        <div><i class="fa-solid fa-envelope ms-2"></i><p class="d-inline-block"><%= expert.mail  %></p></div>
+                    </div>
+                    <div class="col-md-1 col-2">
+                        <div class="sales-social"><a href="<% if (expert.telegramurl){%><%=expert.telegramurl %><% } else{ %> # <%} %>"> <img src="/assets/img/Telegram.png" alt=""> </a></div>
+                        <div class="sales-social"><a href="<% if (expert.whatsappurl){%><%=expert.whatsappurl %><% } else{ %> # <%} %>"> <img src="/assets/img/Whatsapp.png" alt=""> </a></div>
+                    </div>
+            </div>
+            <div class="row m-0">
+                <p class="pt-3 text-justify col-md-6"><%=expert.description%></p>
+
+                <div class="col-md-3 "><a class="btn btn-success btn-lg w-100 " href="/admin/experts/<%= expert._id %>"> ویرایش  </a></div>
+                <form action="/admin/delete-expert" method="POST" class="col-md-3 ">
+                    <input type="hidden" value="<%= expert._id %>" name="expertId">
+                    <button class="btn btn-danger rounded btn-lg w-100" type="submit"> حذف </button>
+                </form>
+            </div>
+
+            </div>    
+
+            <% } } else{%>
+                <div class="display5"> هیچ کارشناسی یافت نشد!!!</div>
+            <% } %>
+            <div class="row justify-content-center pt-5">
+                <div class="col-md-8   ">
+                    <a class="btn btn-info w-100" href="/admin/add-expert">  یک کارشناس اضافه کنید  </a>
+                </div>
+            </div>
+        </div>    
+</div>
+
+
+
+
+
+    <!-- footer -->
+    <%- include('../includes/footer') %>

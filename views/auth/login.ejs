@@ -1,0 +1,40 @@
+<%- include('../includes/header.ejs') %>
+</head>
+<body>
+      <%- include('../includes/navigation.ejs') %>
+
+    <div class="main-wraper">
+      <div class="container-fluid content-wrapper px-5 mt-5">
+        <div class="bg-p-90 w-75 p-3 m-auto rounded " >
+        <% if (errorMessage) { %>
+          <div class="alert alert-danger " dir="rtl" role="alert">
+            <%= errorMessage %>
+          </div>
+          <%} %>
+        <form action="/login" method="POST" >
+            <div class="row p-3  text-end"> 
+              <div class="col mb-3 text-end">
+                <label for="email" class="form-label text-white"> ایمیل  </label>
+                <input type="text" class="form-control" name="email" value="<%= oldInput.email %>">
+                <div id="email" class="form-text"> ایمیل شما جایش امن است نگران نباشید </div>
+              </div>
+              <div class="col mb-3 text-end">
+                <label for="password" class="form-label text-white"> رمز  </label>
+                <input type="password" class="form-control" id="exampleInputPassword1" name="password" value="<%= oldInput.password %>">
+              </div>
+              <div class="mb-3 form-check text-end">
+                <input type="checkbox" class="form-check-input ms-2 me-auto float-end" id="exampleCheck1">
+                <label class="form-check-label text-white " for="exampleCheck1">  برای ورود راحت تر تیک را بزنید </label>
+              </div>
+              <div class="d-flex flex-column align-items-center">
+                <button type="submit" class="btn btn-success d-block w-50">  ورود </button>
+                <a href="/resetpass" class=" d-block w-50"><p class="btn btn-warning w-100  mt-3">  رمز خود را فراموش کرده ام </p></a>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+          <!-- footer -->
+    <%- include('../includes/footer') %>

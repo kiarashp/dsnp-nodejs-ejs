@@ -1,0 +1,85 @@
+<div class="main-wraper">
+  <nav class="navbar navbar-expand-lg navbar-dark p-3 nav-container">
+    <div class="container-fluid">
+      <a class="navbar-brand d-block d-lg-none" href="#">
+        <img src="/assets/img/logo.png" height="80" />
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item">
+            <a
+              class="nav-link mx-2 <%= path === '/admin/contactus' ? 'navbar-active' : '' %>"
+              href="/admin/contactus"
+            >
+              ارتباط با ما
+            </a>
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link mx-2 <%= path === '/admin/resume' ? 'navbar-active' : '' %>"
+              href="/admin/resume"
+            >
+              رزومه
+            </a>
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link mx-2 <%= path === '/admin/experts' ? 'navbar-active' : '' %>"
+              href="/admin/experts"
+            >
+              کارشناسان
+            </a>
+          </li>
+          <li class="nav-item d-none d-lg-block">
+            <a class="nav-link mx-2" href="/">
+              <img src="/assets/img/logo.png" height="40" />
+            </a>
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link mx-2 <%= path === '/admin/products' ? 'navbar-active' : '' %>"
+              href="/admin/products"
+            >
+              محصولات
+            </a>
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link mx-2 <%= path === '/admin/aboutus' ? 'navbar-active' : '' %>"
+              href="/admin/aboutus"
+            >
+              درباره ما
+            </a>
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link mx-2 <%= path === '/admin' ? 'navbar-active' : '' %>"
+              href="/admin"
+            >
+              کنترل پنل
+            </a>
+          </li>
+          <li class="nav-item">
+            <form action="/logout" method="POST">
+              <button class="btn btn-link nav-link mx-2" type="submit">
+                خروج
+              </button>
+            </form>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>

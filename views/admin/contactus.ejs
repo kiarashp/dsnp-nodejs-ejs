@@ -1,0 +1,39 @@
+<%- include('../includes/header.ejs') %>
+</head>
+<body>
+<%- include('./admin-navigation') %>
+      <div class="main-wraper bg-white">
+            <div class="container-fluid py-5">
+                  <% if (errorMessage) { %>
+                        <div class="alert alert-danger " dir="rtl" role="alert">
+                          <%= errorMessage %>
+                        </div>
+                        <%} %>
+                  <div class="bg-p-90 w-75 p-3 m-auto rounded  " >
+                      <form action="/admin/edit-contact" method="POST" dir="rtl">
+                        <div class="row p-3  text-end"> 
+                          <div class="mb-3 col-12 ">
+                            <label for="address" class="form-label text-white">  آدرس </label>
+                            <input  name="address" class="text-end form-control" id="address" value="<% if(contact) { %><%= contact.address %><% } else { %> <%= "" %> <% } %>">
+                          </div>
+                          <div class="mb-3 col-12 ">
+                              <label for="phone" class="form-label text-white">  تلفن </label>
+                              <input  name="phone" class="text-end form-control" id="phone" value="<% if(contact) { %><%= contact.phone %><% } else { %> <%= "" %> <% } %>">
+                            </div>
+                            <div class="mb-3 col-12 ">
+                              <label for="fax" class="form-label text-white">  فکس </label>
+                              <input  name="fax" class="text-end form-control" id="fax" value="<% if(contact) { %><%= contact.fax %><% } else { %> <%= "" %> <% } %>">
+                            </div>
+                            <div class="mb-3 col-12 ">
+                              <label for="whatsapp" class="form-label text-white">  واتس آپ </label>
+                              <input  name="whatsapp" class="text-end form-control" id="whatsapp" value="<% if(contact) { %><%= contact.whatsapp %><% } else { %> <%= "" %> <% } %>">
+                            </div>
+
+                          <button type="submit" class="mt-2 btn btn-success">  ویرایش </button>
+                        </div>
+                        </form>
+                  </div>
+              </div>
+      </div>
+    
+<%- include('../includes/footer') %>

@@ -1,0 +1,49 @@
+<%- include('../includes/header.ejs') %>
+</head>
+<body>
+      <%- include('../includes/navigation.ejs') %>
+
+
+    <div class="main-wraper">
+      <div class="content-wrapper container-fluid px-5">
+        <% if (errorMessage) { %>
+          <div class="alert alert-danger " dir="rtl" role="alert">
+            <%= errorMessage %>
+          </div>
+          <%} %>
+        <div class="bg-p-90 w-75 p-3 m-auto rounded mt-5 " >
+          <form action="/signup" method="POST" dir="rtl" >
+              <div class="row p-3  text-end"> 
+                <div class=" col ">
+                    <label for="name" class="form-label text-white">نام شما</label>
+                    <input type="text" class="form-control <%= redAlerts.find(e=> e.path === 'name') ? 'border-danger' : '' %>" id="name" name="name" value="<%= oldInput.name %>">
+                  </div>
+                <div class=" col">
+                  <label for="email" class="form-label text-white"> ایمیل  </label>
+                  <input type="text" class="form-control <%= redAlerts.find(e=> e.path === 'email') ? 'border-danger' : ''  %>" id="exampleInputEmail1" name="email" value="<%= oldInput.email %>"              >
+                  <div id="emailHelp" class="form-text"> جای ایمیل شما محفوظ است </div>
+                </div>
+              </div>
+              <div class="row p-3  text-end"> 
+                <div class="mb-3 col">
+                  <label for="password" class="form-label text-white">  پسورد </label>
+                  <input type="password" class="form-control <%= redAlerts.find(e=> e.path === 'password') ? 'border-danger' : '' %>" id="pass" name="password" value="<%= oldInput.password %>">
+                  <div id="passhelp" class="form-text"> پسورد حداقل 6 کاراکتر داشته باشد </div>
+                </div>
+                <div class="mb-3 col">
+                  <label for="confirmp" class="form-label text-white">  پسورد را تکرار کنید </label>
+                  <input type="password" class="form-control <%= redAlerts.find(e=> e.path === 'confirmp') ? 'border-danger' : '' %>"  id="confirmp" name="confirmp" value="<%= oldInput.confirmp %>">
+                </div>
+                <div class="mb-3 form-check">
+                  <input type="checkbox" class="form-check-input float-end" id="exampleCheck1">
+                  <label class="form-check-label text-white  me-5" for="exampleCheck1">برای ورود آسان تر تیک بزنید</label>
+                </div>
+                <button type="submit" class="btn btn-success">   ثبت نام میکنم </button>
+              </div>
+            </form>
+          </div>
+      </div> <!-- content-wrapper ended -->
+    </div> <!-- main-wrapper ended -->
+
+          <!-- footer -->
+    <%- include('../includes/footer') %>

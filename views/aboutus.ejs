@@ -1,0 +1,53 @@
+<%- include('./includes/header.ejs') %>
+</head>
+<body>
+<%- include('./includes/navigation.ejs') %>
+  <div class="main-wraper" >
+        <div class="content-wrapper">
+          <div class="container-slogans ">
+              <div class="right-slogan row">
+                  <div class="col-md-6 hidden-mobile"><img src="/assets/img/logo.png" alt=""></div>
+                  <div class="col-md-6 pe-1">
+                      <p class="title-slogan hidden-mobile">دقت سنجش نوین پویا</p>
+                      <p class="text-white">شرکتی نوپا اما متشکل از تیم مجرب <br>از تولید کنندگان سنسور، المنت و کنترلرهای صنعتی.</p>
+                  </div>
+              </div>
+              <div class="square-slogans"></div>
+              <div class="left-slogan row">
+                  <div class="col-md-4 col-4 d-flex align-items-center justify-content-center"><div class="title2-slogan"> تولید ایرانی</div></div>
+                  <div class="col-md-8 col-8 d-flex align-items-end justify-content-center">
+                      <span class="title-slogan-left-plus ">+</span>
+                      <p class="title2-slogan-left">تضمین کیفیت در برابر رقبای خارجی</p>
+                  </div>
+              </div>
+              <div class="about-us-top">
+                  <p >
+                    <% if(about) { %><%= about.intro %> <% }else { %> <%= ' متنی وجود ندارد' %> <% } %>
+                  </p>                
+              </div>
+              <div class="faradis-title ">زیرمجموعه های دقت سنجش نوین پویا</div>
+              <div class="row faradis-about">
+                <div class="col-md-3 col-3 marginTBautoMobile"><img src="/assets/img/faradis-1.png" alt=""></div>
+                  <div class="col-md-9 col-9">
+                    <% if(about) { %><%= about.faradis %><% }else { %> <%= ' متنی وجود ندارد' %> <% } %>
+                  </div>
+              </div>
+              <div class="row coopl-about">
+                <div class="col-md-9 col-9">
+                  <% if(about) { %><%= about.coopl %><% }else { %> <%= ' متنی وجود ندارد' %> <% } %>     
+                </div>
+                <div class="col-md-3 col-3 marginTBautoMobile"><img src="/assets/img/coopl.png" alt=""></div>
+
+
+              </div>
+              <div class="row german-about">
+                <div class="col-md-3 col-3 marginTBautoMobile"><img src="/assets/img/german.png" alt=""></div>
+                <div class="col-md-9 col-9">
+                  <% if(about) { %><%= about.german %><% } else{ %> <%=' متنی وجود ندارد' %> <% } %>
+                </div>
+
+              </div>
+      </div><!---container-slogans ends here-->
+    </div><!-----content-wrapper ends here-->
+  </div> <!-- main wrapper ends here-->
+<%- include('./includes/footer') %>
