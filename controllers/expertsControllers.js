@@ -5,7 +5,7 @@ exports.getExperts = (req, res, next) => {
     .then((allexperts) => {
       res.render("experts", {
         pageTitle: "کارشناسان ما",
-        path: "/experts",
+        path: "experts",
         experts: allexperts,
       });
     })

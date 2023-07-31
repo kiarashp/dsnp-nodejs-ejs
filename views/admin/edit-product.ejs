@@ -1,0 +1,50 @@
+<%- include('../includes/header.ejs') %>
+</head>
+
+<body>
+  <%- include('./admin-navigation') %>
+
+  <div class="main-wraper">
+    <div class="content-wrapper container-fluid">
+      <% if (errorMessage) { %>
+      <div class="alert alert-danger " dir="rtl" role="alert">
+        <%= errorMessage %>
+      </div>
+      <%} %>
+      <div class="bg-p-90 w-75 p-3 m-auto rounded ">
+
+        <form action="/admin/edit-product" method="POST" enctype="multipart/form-data">
+          <div class="row p-3  text-end">
+            <div class="mb-3 col">
+                <label for="category" class="form-label text-white"> انتخاب دسته بندی </label>
+                <select name="category" class="form-select text-end" aria-label="Default select">
+                  <option></option>
+                  <option value="المنت">المنت</option>
+                  <option value="ابزار دقیق">ابزار دقیق</option>
+                </select>
+            </div>
+            <div class="mb-3 col ">
+              <label for="title" class="form-label text-white"> عنوان </label>
+              <input name="title" type="text" value="<%= product.title%>" class="text-end form-control" id="title" dir="rtl">
+            </div>
+
+            <div class="mb-3">
+              <label for="description" class="form-label text-white"> توضیحات </label>
+              <textarea name="description" " class=" text-end form-control" id="description"><%= product.description %></textarea>
+            </div>
+            <div class="mb-3 col ">
+              <label for="image" class="form-label text-white"> تصویر </label>
+              <input name="image" type="file" class="form-control" id="image">
+              <div class="form-text" dir="rtl">فرمت های قابل قبول: jpeg,jpg,png</div>
+            </div>
+            <input type="hidden" value="<%= product._id %>" name="productId">
+            <button type="submit" class="mt-2 btn btn-success"> ویرایش این محصول </button>
+          </div>
+        </form>
+      </div>
+
+    </div> <!-- content-wrapper ended -->
+
+  </div> <!-- main-wrapper ended -->
+
+  <%- include('../includes/footer') %>

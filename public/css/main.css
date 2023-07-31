@@ -105,8 +105,8 @@ body {
 /* content wrapper for pages other than home  */
 
 .content-wrapper {
-  padding-top: 100px;
-  padding-bottom: 100px;
+  padding-top: 50px;
+  padding-bottom: 50px;
   background-color: white;
 }
 
@@ -769,6 +769,10 @@ body {
 .product-bc {
   background-color: var(--primary100);
   padding-top: 140px;
+}
+.product-bc-admin{
+  background-color: var(--primary100);
+
 }
 
 .instrumentation {

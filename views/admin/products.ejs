@@ -1,12 +1,76 @@
 <%- include('../includes/header.ejs') %>
 </head>
+
 <body>
-    <%- include('./admin-navigation') %>
+  <%- include('./admin-navigation') %>
 
-          <!-- main content  -->
+  <!-- main content  -->
 
+  <div class="main-wraper">
+    <div class=" content-wrapper product-bc-admin">
+      <!-- Title 1 -->
+      <div class="instrumentation">
+        <div>
+          <div class="title-instrumentation d-inline-block">ابزار دقیق</div><i class="fa-solid fa-2x  fa-temperature-quarter"></i>
+        </div>
+      </div>
+      <% if (abzarProducts.length>0){ %>
+            <% for (let product of abzarProducts) { %>
+      <div class="container">
+        <div class="box-instrumentation row">
+          <div class="box-instrumentation-right col-sm-8 ">
+            <div class="box-instrumentation-title"><%= product.title %></div>
+            <p>  <%= product.description  %>  </p>
+          </div>
+          <div class="box-instrumentation-left col-sm-4 ">
+            <img src="/<%= product.imageurl  %>" alt="<%= product.title  %>">
+          </div>
+          <div class="col-md-3 "><a class="btn btn-success btn-lg w-100 " href="/admin/products/<%= product._id %>"> ویرایش </a></div>
+          <form action="/admin/delete-product" method="POST" class="col-md-3 ">
+              <input type="hidden" value="<%= product._id %>" name="productId">
+              <button class="btn btn-danger rounded btn-lg w-100" type="submit"> حذف </button>
+            </form>
+        </div>
+      </div>
+      <% } } else{%>
+            <div class="display5 alert alert-warning w-75 mx-auto text-center"> هیچ محصولی یافت نشد!!!</div>
+            <% } %>
+      <!-- Title 2 -->
 
+      <div class="instrumentation">
+        <div>
+          <div class="title-instrumentation d-inline-block">المنت</div><i class="fa-solid fa-2x  fa-temperature-quarter"></i>
+        </div>
+      </div>
 
-          
-    <!-- footer -->
-    <%- include('../includes/footer') %>
+      <!-- Item 5 -->
+      <% if (elementProducts.length>0){ %>
+            <% for (let product of elementProducts) { %>
+      <!-- Item 1 -->
+      <div class="container">
+        <div class="box-instrumentation row">
+          <div class="box-instrumentation-right col-sm-8 ">
+            <div class="box-instrumentation-title">    <%= product.title  %>  </div>
+            <p>  <%= product.description  %>  </p>
+          </div>
+          <div class="box-instrumentation-left col-sm-4 ">
+            <img src="/<%= product.imageurl  %>" alt="<%= product.title  %>">
+          </div>
+          <div class="col-md-3 "><a class="btn btn-success btn-lg w-100 " href="/admin/products/<%= product._id %>"> ویرایش </a></div>
+          <form action="/admin/delete-product" method="POST" class="col-md-3 ">
+              <input type="hidden" value="<%= product._id %>" name="productId">
+              <button class="btn btn-danger rounded btn-lg w-100" type="submit"> حذف </button>
+            </form>
+        </div>
+
+      </div>
+
+      <% } } else{%>
+            <div class="display5 alert alert-warning w-75 mx-auto text-center"> هیچ محصولی یافت نشد!!!</div>
+            <% } %>
+                  <a type="button" class="btn btn-success w-50 mx-auto d-block btn-lg" href="/admin/add-product">اضافه کردن محصول</a>
+    </div>
+    <!-----content-wrapper ends here-->
+  </div>
+
+  <%- include('../includes/footer') %>

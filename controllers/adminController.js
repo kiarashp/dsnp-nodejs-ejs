@@ -1,6 +1,8 @@
 const { validationResult } = require("express-validator");
 
 const Expert = require("../models/expertsModel");
+const Product = require("../models/products.model");
+
 // const User = require("../models/userModel");
 const AboutUs = require("../models/aboutUsModel");
 const ContactUs = require("../models/contactUsModel");
@@ -328,6 +330,155 @@ exports.postDeleteExpert = (req, res, next) => {
     .then((result) => {
       console.log("the expert Deleted forever😵");
       res.redirect("/admin/experts");
+    })
+    .catch((err) => {
+      const error = new Error(err);
+      error.httpStatusCode = 500;
+      return next(error);
+    });
+};
+
+exports.getProducts = async (req, res, next) => {
+  try {
+    const abzarProducts = await Product.find({ category: "ابزار دقیق" });
+    const elementProducts = await Product.find({ category: "المنت" });
+    res.render("admin/products", {
+      pageTitle: " مشاهده همه محصولات/ صفحه ادمین",
+      path: "/admin/products",
+      abzarProducts: abzarProducts,
+      elementProducts: elementProducts,
+    });
+  } catch (err) {
+    const error = new Error(err);
+    error.httpStatusCode = 500;
+    return next(error);
+  }
+};
+exports.getAddProduct = (req, res) => {
+  res.render("admin/add-product", {
+    oldInput: {
+      title: "",
+      category: "",
+      description: "",
+      image: "",
+      whatsappurl: "",
+    },
+    errorMessage: null,
+    pageTitle: " صفحه اضافه کردن محصول  ",
+    path: "/admin/add-product",
+  });
+};
+
+exports.postAddProduct = (req, res, next) => {
+  const errors = validationResult(req);
+  const title = req.body.title;
+  const category = req.body.category;
+  const description = req.body.description;
+  const image = req.file;
+  if (!errors.isEmpty()) {
+    return res.status(422).render("admin/add-product", {
+      errorMessage: errors.array()[0].msg,
+      pageTitle: " اضافه کردن یک محصول ",
+      path: "/admin/add-product",
+      oldInput: {
+        title: title,
+        category: category,
+        description: description,
+      },
+    });
+  }
+  if (!image) {
+    return res.status(422).render("admin/add-product", {
+      errorMessage: "عکس را با فرمت درست آپلود کنید.",
+      pageTitle: "صفحه اضافه کردن محصول",
+      path: "/admin/add-product",
+      oldInput: {
+        title: title,
+        category: category,
+        description: description,
+      },
+    });
+  }
+  const imageurl = image.path;
+  const product = new Product({
+    title: title,
+    category: category,
+    description: description,
+    imageurl: imageurl,
+  });
+  product
+    .save()
+    .then((result) => {
+      console.log("New Product added successfully😊");
+      res.redirect("/admin/products");
+    })
+    .catch((err) => {
+      const error = new Error(err);
+      error.httpStatusCode = 500;
+      return next(error);
+    });
+};
+exports.getEditProduct = (req, res, next) => {
+  const productId = req.params.productId;
+  Product.findById(productId)
+    .then((product) => {
+      res.render("admin/edit-product", {
+        errorMessage: null,
+        pageTitle: "صفحه ویرایش محصول",
+        path: "/admin/edit-product",
+        product: product,
+      });
+    })
+    .catch((err) => {
+      const error = new Error(err);
+      error.httpStatusCode = 500;
+      return next(error);
+    });
+};
+
+exports.postEditProduct = (req, res, next) => {
+  const errors = validationResult(req);
+  const productId = req.body.productId;
+  const title = req.body.title;
+  const category = req.body.category;
+  const description = req.body.description;
+  const image = req.file;
+
+  Product.findById(productId)
+    .then((product) => {
+      if (!errors.isEmpty()) {
+        return res.status(422).render("admin/edit-product", {
+          errorMessage: errors.array()[0].msg,
+          pageTitle: " ویرایش محصول ",
+          path: "/admin/edit-product",
+          product: product,
+        });
+      }
+      product.title = title;
+      product.category = category;
+      product.description = description;
+      if (image) {
+        const imagePath = image.path; // example file path with backslashes
+        const normalizedPath = imagePath.replace(/\\/g, "/"); // replace backslashes with forward slashes
+        product.imageurl = normalizedPath;
+      }
+      return product.save().then((result) => {
+        console.log("produc updated👍");
+        res.redirect("/admin/products");
+      });
+    })
+    .catch((err) => {
+      const error = new Error(err);
+      error.httpStatusCode = 500;
+      return next(error);
+    });
+};
+exports.postDeleteProduct = (req, res, next) => {
+  const productId = req.body.productId;
+  Product.findByIdAndRemove(productId)
+    .then((product) => {
+      console.log("the expert Deleted forever😵");
+      res.redirect("/admin/products");
     })
     .catch((err) => {
       const error = new Error(err);
